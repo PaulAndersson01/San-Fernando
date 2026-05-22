@@ -64,6 +64,10 @@ public class SanFernando4 {
                 case 1:
                     System.out.println("-- PRODUCTOS DE POLLO --");
                     System.out.println("1. Pollo Entero (S/ 19.0) - Stock: " + stockPolloEntero);
+                    System.out.println("2.");
+                    System.out.println("3.");
+                    System.out.println("4.");
+                    System.out.println("5.");
                     System.out.println("Seleccione el producto a comprar:");
                     int productoPollo = leer.nextInt();
                     if (productoPollo == 1) {
@@ -85,6 +89,10 @@ public class SanFernando4 {
                 case 2:
                     System.out.println("-- PRODUCTOS DE PAVITA --");
                     System.out.println("1. Pavita Trozada (S/ 24.0) - Stock: " + stockPavitaTrozada);
+                    System.out.println("2.");
+                    System.out.println("3.");
+                    System.out.println("4.");
+                    System.out.println("5.");
                     System.out.println("Seleccione el producto a comprar:");
                     int productoPavita = leer.nextInt();
                     if (productoPavita == 1) {
@@ -107,6 +115,10 @@ public class SanFernando4 {
                 case 3:
                     System.out.println("-- PRODUCTOS DE EMBUTIDOS --");
                     System.out.println("1. Hot Dog (S/ 9.0) - Stock: " + stockHotDog);
+                    System.out.println("2.");
+                    System.out.println("3.");
+                    System.out.println("4.");
+                    System.out.println("5.");
                     System.out.println("Seleccione el producto a comprar:");
                     int productoEmbutido = leer.nextInt();
                     if (productoEmbutido == 1) {
@@ -127,6 +139,8 @@ public class SanFernando4 {
                 case 4:
                     System.out.println("-- PRODUCTOS DE HUEVOS --");
                     System.out.println("1. Jaba de Huevos (S/ 16.0) - Stock: " + stockJabaHuevos);
+                    System.out.println("2.");
+                    System.out.println("3.");
                     System.out.println("Seleccione el producto a comprar:");
                     int productoHuevo = leer.nextInt();
                     if (productoHuevo == 1) {
@@ -140,7 +154,8 @@ public class SanFernando4 {
                         else {
                             System.out.println("No hay suficiente stock.");
                         }
-                    } else {
+                    } 
+                    else {
                         System.out.println("Producto no válido.");
                     }
                     break;
