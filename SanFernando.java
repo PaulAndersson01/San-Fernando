@@ -1,130 +1,147 @@
 import java.util.Scanner;
-
 public class SanFernando {
 
-    public static void main(String[] args) {
+    public static void celebraComple() {
+        System.out.println("===San fernando===");
+        System.out.println("7.Celebraciones");
+        System.out.println("8.Complementos");
+        System.out.println("0./_Salir_/");
+        System.out.println("Elija entre las siguientes opciones[En números]:");
+    }
 
-        Scanner entrada = new Scanner(System.in);
+    public static double mostrarCelebraciones(Scanner scanner) {
 
-        String nombre, ubicacion;
-        int categoria, producto, cantidad, pago;
-
-        String nomProducto = "";
-        String metodoPago = "";
+        int producto;
         double precio = 0;
+        int cantidad;
+        double total;
 
-        double subtotal, igv, total;
+        System.out.println("=== CELEBRACIONES ===");
 
-        System.out.println("=================================");
-        System.out.println("       SISTEMA SAN FERNANDO      ");
-        System.out.println("=================================");
+        System.out.println("1.Pierna de Cerdo Congelado (9 a 10 Kg)");
+        System.out.println("Precio: S/ 24.00 x kg");
 
-        System.out.print("Ingrese su nombre: ");
-        nombre = entrada.nextLine();
+        System.out.println("2.Enrollado americano de pavita x 1.30 Kg");
+        System.out.println("Precio: S/ 42.40");
 
-        System.out.print("Ingrese su ubicación: ");
-        ubicacion = entrada.nextLine();
+        System.out.println("3.Enrollado delizia de cerdo x 1.30 Kg");
+        System.out.println("Precio: S/ 41.00");
 
-        int continuar;
+        System.out.println("4.Enrollado americano de pollo x 1.30 Kg");
+        System.out.println("Precio: S/ 37.10");
 
-        do {
+        System.out.println("5.Enrollado delizia de pollo x 1.30 Kg");
+        System.out.println("Precio: S/ 37.30");
 
-            System.out.println("=========== CATEGORÍAS ===========");
-            System.out.println("1. Pollo");
-            System.out.println("2. Pavita");
-            System.out.println("3. Cerdo");
-            System.out.println("4. Embutidos");
-            System.out.println("5. Congelados");
-            System.out.println("6. Salir");
+        System.out.println("Seleccione un producto:");
+        producto = scanner.nextInt();
 
-            System.out.print("Seleccione categoría: ");
-            categoria = entrada.nextInt();
-
-            // 🔥 ARREGLO IMPORTANTE (consume salto de línea)
-            entrada.nextLine();
-
-            if (categoria == 6) {
-                System.out.println("Gracias por su compra.");
+        switch (producto){
+            case 1:
+                precio = 24.00;
                 break;
-            }
+            case 2:
+                precio = 42.40;
+                break;
+            case 3:
+                precio = 41.00;
+                break;
+            case 4:
+                precio = 37.10;
+                break;
+            case 5:
+                precio = 37.30;
+                break;
+            default:
+                System.out.println("Opcion Invalida");
+                return 0;
+        }
 
-            System.out.print("Seleccione producto (1-10): ");
-            producto = entrada.nextInt();
+        System.out.println("Ingrese la cantidad:");
+        cantidad = scanner.nextInt();
 
-            System.out.print("Cantidad: ");
-            cantidad = entrada.nextInt();
+        total = precio * cantidad;
+        System.out.println("Total a pagar es: "+ total +" S/. ");
 
-            // PRODUCTOS (simplificado)
-            switch (categoria) {
+        return total;
+    }
 
-                case 1:
-                    switch (producto) {
-                        case 1: nomProducto = "Pollo entero"; precio = 18.50; break;
-                        case 2: nomProducto = "Pechuga"; precio = 16.00; break;
-                        case 3: nomProducto = "Muslo"; precio = 12.50; break;
-                        case 4: nomProducto = "Ala"; precio = 10.00; break;
-                        case 5: nomProducto = "Pierna"; precio = 11.00; break;
-                        case 6: nomProducto = "Filete"; precio = 20.00; break;
-                        case 7: nomProducto = "Pollo adobado"; precio = 22.00; break;
-                        case 8: nomProducto = "Pollo orgánico"; precio = 30.00; break;
-                        case 9: nomProducto = "Menudencia"; precio = 6.00; break;
-                        case 10: nomProducto = "Combo pollo"; precio = 25.00; break;
-                    }
+    public static double mostrarComplementos(Scanner scanner) {
+        int producto;
+        int cantidad;
+        double precio = 0;
+        double total;
+        System.out.println("=== COMPLEMENTOS ===");
+
+        System.out.println("1.Aceite de Oliva extra virgen x 1 Lt.");
+        System.out.println("Precio: S/ 51.90");
+
+        System.out.println("2.Aceite de Oliva extra virgen x 500 Ml.");
+        System.out.println("Precio: S/ 28.90");
+
+        System.out.println("3.Aceite de Oliva extra virgen x 4 Litros");
+        System.out.println("Precio: S/ 167.00");
+
+        System.out.println("Seleccione un producto:");
+        producto = scanner.nextInt();
+        switch (producto){
+            case 1:
+                precio = 51.90;
+                break;
+            case 2:
+                precio = 28.90;
+                break;
+            case 3:
+                precio = 167.00;
+                break;
+            default:
+                System.out.println("Opcion Invalida");
+                return 0;
+        }
+
+        System.out.println("Ingrese la cantidad: ");
+        cantidad = scanner.nextInt();
+
+        total = precio * cantidad;
+        System.out.println("El total a pagar es: "+ total +" S/.");
+        return total;
+    }
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        boolean continuar = true;
+        double totalGeneral = 0;
+
+        while (continuar) {
+            celebraComple();
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 7:
+                    totalGeneral += mostrarCelebraciones(scanner);
+                    break;
+                case 8:
+                    totalGeneral += mostrarComplementos(scanner);
+                    break;
+                case 0:
+                    double igv = totalGeneral * 0.18;
+                    double totaFinal = totalGeneral + igv;
+                    System.out.println("===BOLETA FINAL===");
+                    System.out.println("SubTotal: S/. "+ totalGeneral);
+                    System.out.println("IGV: S/. "+ igv);
+                    System.out.println("Total final: "+ totaFinal);
+                    System.out.println("==================");
+
+                    System.out.println("Saliendo del sistema...");
+                    continuar = false;
                     break;
 
-                case 2:
-                    switch (producto) {
-                        case 1: nomProducto = "Pavita entera"; precio = 45.00; break;
-                        case 2: nomProducto = "Pechuga pavita"; precio = 28.00; break;
-                        case 3: nomProducto = "Jamón pavita"; precio = 20.00; break;
-                        case 4: nomProducto = "Filete pavita"; precio = 26.00; break;
-                        case 5: nomProducto = "Muslo pavita"; precio = 22.00; break;
-                        case 6: nomProducto = "Pavita ahumada"; precio = 35.00; break;
-                        case 7: nomProducto = "Pavita premium"; precio = 50.00; break;
-                        case 8: nomProducto = "Pavita congelada"; precio = 40.00; break;
-                        case 9: nomProducto = "Pavita molida"; precio = 18.00; break;
-                        case 10: nomProducto = "Combo pavita"; precio = 55.00; break;
-                    }
-                    break;
+                default:
+                    System.out.println("Opcion invalida");
             }
-
-            // PAGO
-            System.out.println("===== MÉTODO DE PAGO =====");
-            System.out.println("1. Yape");
-            System.out.println("2. Plin");
-            System.out.println("3. BCP");
-            System.out.println("4. Interbank");
-            System.out.println("5. BBVA");
-
-            System.out.print("Seleccione pago: ");
-            pago = entrada.nextInt();
-
-            switch (pago) {
-                case 1: metodoPago = "Yape"; break;
-                case 2: metodoPago = "Plin"; break;
-                case 3: metodoPago = "BCP"; break;
-                case 4: metodoPago = "Interbank"; break;
-                case 5: metodoPago = "BBVA"; break;
-            }
-
-            subtotal = precio * cantidad;
-            igv = subtotal * 0.18;
-            total = subtotal + igv;
-
-            System.out.println("========= BOLETA =========");
-            System.out.println("Cliente: " + nombre);
-            System.out.println("Ubicación: " + ubicacion);
-            System.out.println("Producto: " + nomProducto);
-            System.out.println("Cantidad: " + cantidad);
-            System.out.println("Pago: " + metodoPago);
-            System.out.println("TOTAL: S/." + total);
-            System.out.println("==========================");
-
-            System.out.print("¿Otra compra? (1=Sí / 2=No): ");
-            continuar = entrada.nextInt();
-
-        } while (continuar == 1);
-
-        entrada.close();
+            System.out.println("TOTAL ACUMULADO: S/. "+ totalGeneral);
+        }
     }
 }
