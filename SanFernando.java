@@ -1,130 +1,198 @@
 import java.util.Scanner;
-
 public class SanFernando {
-
     public static void main(String[] args) {
-
-        Scanner entrada = new Scanner(System.in);
-
-        String nombre, ubicacion;
-        int categoria, producto, cantidad, pago;
-
-        String nomProducto = "";
-        String metodoPago = "";
-        double precio = 0;
-
-        double subtotal, igv, total;
-
-        System.out.println("=================================");
-        System.out.println("       SISTEMA SAN FERNANDO      ");
-        System.out.println("=================================");
-
-        System.out.print("Ingrese su nombre: ");
-        nombre = entrada.nextLine();
-
-        System.out.print("Ingrese su ubicación: ");
-        ubicacion = entrada.nextLine();
-
-        int continuar;
-
-        do {
-
-            System.out.println("=========== CATEGORÍAS ===========");
+        Scanner leer = new Scanner(System.in);
+        System.out.println("---BIENVENIDO A SAN FERNANDO---");
+        menuAcceso(leer);
+    }
+    public static void menuAcceso(Scanner leer) {
+        int opcion = 0;
+        String correoCliente = "Invitado";
+        boolean estadoMenu = true;
+        while (estadoMenu == true) {
+            System.out.println("--- MENÚ DE DE INICIO ---");
+            System.out.println("1. Crear Cuenta");
+            System.out.println("2. Entrar como Invitado");
+            System.out.println("3. Salir");
+            System.out.println("Seleccione una opcion");
+            opcion = leer.nextInt();
+            leer.nextLine();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese su correo:");
+                    correoCliente = leer.nextLine();
+                    System.out.println("Ingrese su contraseña:");
+                    String passwordCliente = leer.nextLine();
+                    System.out.println("Cuenta creada con éxito.");
+                    menuPrincipal(correoCliente, leer);
+                    break;
+                case 2:
+                    System.out.println("Entrando como invitado...");
+                    correoCliente = "Invitado";
+                    menuPrincipal(correoCliente, leer);
+                    break;
+                case 3:
+                    System.out.println("Saliendo del sistema...");
+                    estadoMenu = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+        }
+    }
+    public static void menuPrincipal(String correoCliente, Scanner leer) {
+        double totalPagar = 0;
+        boolean estadoTienda = true;
+        int stockPolloEntero = 10;
+        int stockPavitaTrozada = 10;
+        int stockHotDog = 10;
+        int stockJabaHuevos = 10;
+        while (estadoTienda == true) {
+            System.out.println("--- CATEGORÍAS ---");
+            System.out.println("Usuario actual: " + correoCliente);
             System.out.println("1. Pollo");
             System.out.println("2. Pavita");
-            System.out.println("3. Cerdo");
-            System.out.println("4. Embutidos");
-            System.out.println("5. Congelados");
-            System.out.println("6. Salir");
-
-            System.out.print("Seleccione categoría: ");
-            categoria = entrada.nextInt();
-
-            // 🔥 ARREGLO IMPORTANTE (consume salto de línea)
-            entrada.nextLine();
-
-            if (categoria == 6) {
-                System.out.println("Gracias por su compra.");
-                break;
-            }
-
-            System.out.print("Seleccione producto (1-10): ");
-            producto = entrada.nextInt();
-
-            System.out.print("Cantidad: ");
-            cantidad = entrada.nextInt();
-
-            // PRODUCTOS (simplificado)
-            switch (categoria) {
-
+            System.out.println("3. Embutidos");
+            System.out.println("4. Huevos");
+            System.out.println("5. Ver mi carrito total");
+            System.out.println("6. Pagar y generar boleta");
+            System.out.println("7. Cerrar sesión");
+            System.out.println("seleccione una  opcion");
+            int opcionMenu = leer.nextInt();
+            switch (opcionMenu) {
                 case 1:
-                    switch (producto) {
-                        case 1: nomProducto = "Pollo entero"; precio = 18.50; break;
-                        case 2: nomProducto = "Pechuga"; precio = 16.00; break;
-                        case 3: nomProducto = "Muslo"; precio = 12.50; break;
-                        case 4: nomProducto = "Ala"; precio = 10.00; break;
-                        case 5: nomProducto = "Pierna"; precio = 11.00; break;
-                        case 6: nomProducto = "Filete"; precio = 20.00; break;
-                        case 7: nomProducto = "Pollo adobado"; precio = 22.00; break;
-                        case 8: nomProducto = "Pollo orgánico"; precio = 30.00; break;
-                        case 9: nomProducto = "Menudencia"; precio = 6.00; break;
-                        case 10: nomProducto = "Combo pollo"; precio = 25.00; break;
+                    System.out.println("-- PRODUCTOS DE POLLO --");
+                    System.out.println("1. Pollo Entero (S/ 19.0) - Stock: " + stockPolloEntero);
+                    System.out.println("Seleccione el producto a comprar:");
+                    int productoPollo = leer.nextInt();
+                    if (productoPollo == 1) {
+                        System.out.println("Ingrese la cantidad a comprar:");
+                        int cantidadComprar = leer.nextInt();
+                        if (cantidadComprar <= stockPolloEntero) {
+                            stockPolloEntero = stockPolloEntero - cantidadComprar;
+                            totalPagar = totalPagar + (19.0 * cantidadComprar);
+                            System.out.println("Agregado al carrito.");
+                        }
+                        else {
+                            System.out.println("No hay suficiente stock.");
+                        }
+                    }
+                    else {
+                        System.out.println("Producto no válido.");
                     }
                     break;
-
                 case 2:
-                    switch (producto) {
-                        case 1: nomProducto = "Pavita entera"; precio = 45.00; break;
-                        case 2: nomProducto = "Pechuga pavita"; precio = 28.00; break;
-                        case 3: nomProducto = "Jamón pavita"; precio = 20.00; break;
-                        case 4: nomProducto = "Filete pavita"; precio = 26.00; break;
-                        case 5: nomProducto = "Muslo pavita"; precio = 22.00; break;
-                        case 6: nomProducto = "Pavita ahumada"; precio = 35.00; break;
-                        case 7: nomProducto = "Pavita premium"; precio = 50.00; break;
-                        case 8: nomProducto = "Pavita congelada"; precio = 40.00; break;
-                        case 9: nomProducto = "Pavita molida"; precio = 18.00; break;
-                        case 10: nomProducto = "Combo pavita"; precio = 55.00; break;
+                    System.out.println("-- PRODUCTOS DE PAVITA --");
+                    System.out.println("1. Pavita Trozada (S/ 24.0) - Stock: " + stockPavitaTrozada);
+                    System.out.println("Seleccione el producto a comprar:");
+                    int productoPavita = leer.nextInt();
+                    if (productoPavita == 1) {
+                        System.out.println("Ingrese la cantidad a comprar:");
+                        int cantidadComprar = leer.nextInt();
+                        if (cantidadComprar <= stockPavitaTrozada) {
+                            stockPavitaTrozada = stockPavitaTrozada - cantidadComprar;
+                            totalPagar = totalPagar + (24.0 * cantidadComprar);
+                            System.out.println("Agregado al carrito.");
+                        }
+                        else {
+                            System.out.println("No hay suficiente stock.");
+                        }
+                    }
+                    else {
+                        System.out.println("Producto no válido.");
                     }
                     break;
+
+                case 3:
+                    System.out.println("-- PRODUCTOS DE EMBUTIDOS --");
+                    System.out.println("1. Hot Dog (S/ 9.0) - Stock: " + stockHotDog);
+                    System.out.println("Seleccione el producto a comprar:");
+                    int productoEmbutido = leer.nextInt();
+                    if (productoEmbutido == 1) {
+                        System.out.println("Ingrese la cantidad a comprar:");
+                        int cantidadComprar = leer.nextInt();
+                        if (cantidadComprar <= stockHotDog) {
+                            stockHotDog = stockHotDog - cantidadComprar;
+                            totalPagar = totalPagar + (9.0 * cantidadComprar);
+                            System.out.println("Agregado al carrito.");
+                        }
+                        else {
+                            System.out.println("No hay suficiente stock.");
+                        }
+                    } else {
+                        System.out.println("Producto no válido.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("-- PRODUCTOS DE HUEVOS --");
+                    System.out.println("1. Jaba de Huevos (S/ 16.0) - Stock: " + stockJabaHuevos);
+                    System.out.println("Seleccione el producto a comprar:");
+                    int productoHuevo = leer.nextInt();
+                    if (productoHuevo == 1) {
+                        System.out.println("Ingrese la cantidad a comprar:");
+                        int cantidadComprar = leer.nextInt();
+                        if (cantidadComprar <= stockJabaHuevos) {
+                            stockJabaHuevos = stockJabaHuevos - cantidadComprar;
+                            totalPagar = totalPagar + (16.0 * cantidadComprar);
+                            System.out.println("Agregado al carrito.");
+                        }
+                        else {
+                            System.out.println("No hay suficiente stock.");
+                        }
+                    } else {
+                        System.out.println("Producto no válido.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("TOTAL A PAGAR HASTA AHORA: S/ " + totalPagar);
+                    break;
+                case 6:
+                    if (totalPagar > 0) {
+                        double montoPagado = validaPago(totalPagar, leer);
+                        generarBoleta(correoCliente, totalPagar, montoPagado);
+                        estadoTienda = false;
+                    }
+                    else {
+                        System.out.println("No compraste nada todavía.");
+                    }
+                    break;
+
+                case 7:
+                    System.out.println("Cerrando sesión de " + correoCliente);
+                    estadoTienda = false;
+                    break;
+
+                default:
+                    System.out.println("Opción no válida");
+                    break;
             }
-
-            // PAGO
-            System.out.println("===== MÉTODO DE PAGO =====");
-            System.out.println("1. Yape");
-            System.out.println("2. Plin");
-            System.out.println("3. BCP");
-            System.out.println("4. Interbank");
-            System.out.println("5. BBVA");
-
-            System.out.print("Seleccione pago: ");
-            pago = entrada.nextInt();
-
-            switch (pago) {
-                case 1: metodoPago = "Yape"; break;
-                case 2: metodoPago = "Plin"; break;
-                case 3: metodoPago = "BCP"; break;
-                case 4: metodoPago = "Interbank"; break;
-                case 5: metodoPago = "BBVA"; break;
+        }
+    }
+    public static double validaPago(double totalPagar, Scanner leer) {
+        double montoEntregado = 0;
+        while (montoEntregado < totalPagar) {
+            System.out.println("TOTAL A PAGAR: S/ " + totalPagar);
+            System.out.println("Ingrese monto de pago: ");
+            montoEntregado = leer.nextDouble();
+            if (montoEntregado < totalPagar) {
+                System.out.println("Dinero insuficiente. Falta: S/ " + (totalPagar - montoEntregado));
             }
+        }
+        return montoEntregado;
+    }
+    public static void generarBoleta(String correoCliente, double totalPagar, double montoEntregado) {
+        double subtotalPago = totalPagar / 1.18;
+        double impuestoIgv = totalPagar - subtotalPago;
+        double vueltoPago = montoEntregado - totalPagar;
 
-            subtotal = precio * cantidad;
-            igv = subtotal * 0.18;
-            total = subtotal + igv;
-
-            System.out.println("========= BOLETA =========");
-            System.out.println("Cliente: " + nombre);
-            System.out.println("Ubicación: " + ubicacion);
-            System.out.println("Producto: " + nomProducto);
-            System.out.println("Cantidad: " + cantidad);
-            System.out.println("Pago: " + metodoPago);
-            System.out.println("TOTAL: S/." + total);
-            System.out.println("==========================");
-
-            System.out.print("¿Otra compra? (1=Sí / 2=No): ");
-            continuar = entrada.nextInt();
-
-        } while (continuar == 1);
-
-        entrada.close();
+        System.out.println("        BOLETA DE VENTA         ");
+        System.out.println("Usuario:       " + correoCliente);
+        System.out.println("Subtotal:      S/ " + subtotalPago);
+        System.out.println("IGV (18%):     S/ " + impuestoIgv);
+        System.out.println("TOTAL A PAGAR: S/ " + totalPagar);
+        System.out.println("Monto Pagado:  S/ " + montoEntregado);
+        System.out.println("Vuelto:        S/ " + vueltoPago);
+        System.out.println("   Gracias por la Visita   ");
     }
 }
