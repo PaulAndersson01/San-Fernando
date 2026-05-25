@@ -1332,14 +1332,12 @@ public class SanFernandoTrabajo {
             fechaVencimiento = leer.nextLine();
             System.out.println("Ingrese el código de seguridads CVV");
             cvv = leer.nextLine();
-
             boolean tarjetaOk = (nroTarjeta.length() == 16);
             boolean cvvOk = (cvv.length() == 3);
             boolean fechaEstructuraOk = (fechaVencimiento.length() == 5 && fechaVencimiento.contains("/"));
             boolean fechaNoVencida = false;
             if (fechaEstructuraOk) {
                 try {
-                    //intenta esto
                     DateTimeFormatter formateador = DateTimeFormatter.ofPattern("MM/yy");
                     YearMonth fechaTarjeta = YearMonth.parse(fechaVencimiento, formateador);
                     YearMonth fechaActual = YearMonth.now();
@@ -1347,7 +1345,6 @@ public class SanFernandoTrabajo {
                         fechaNoVencida = true;
                     }
                 } catch (DateTimeParseException e) {
-                    //muestra el error aqui
                     fechaEstructuraOk = false;
                 }
             }
