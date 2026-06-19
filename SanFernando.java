@@ -53,14 +53,22 @@ public class SanFernando {
     static boolean esAdmin = false;
     static Scanner leer = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("====================================================================");
-        System.out.println("                   BIENVENIDO - SAN FERNANDO                          ");
-        System.out.println("                         TU MEJOR OPCION                                 ");
-        System.out.println("====================================================================");
+        System.out.println(" ███████╗  █████╗ ███╗   ██╗    ███████╗███████╗██████╗ ███╗   ██╗ █████╗ ███╗   ██╗██████╗  ██████╗ ");
+        System.out.println(" ██╔════╝ ██╔══██╗████╗  ██║    ██╔════╝██╔════╝██╔══██╗████╗  ██║██╔══██╗████╗  ██║██╔══██╗██╔═══██╗");
+        System.out.println(" ███████╗ ███████║██╔██╗ ██║    █████╗  █████╗  ██████╔╝██╔██╗ ██║███████║██╔██╗ ██║██║  ██║██║   ██║");
+        System.out.println(" ╚════██║ ██╔══██║██║╚██╗██║    ██╔══╝  ██╔══╝  ██╔══██╗██║╚██╗██║██╔══██║██║╚██╗██║██║  ██║██║   ██║");
+        System.out.println(" ███████║ ██║  ██║██║ ╚████║    ██║     ███████╗██║  ██║██║ ╚████║██║  ██║██║ ╚████║██████╔╝╚██████╔╝");
+        System.out.println(" ╚══════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝    ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ");
+        System.out.println();
+        System.out.println("                           ╔══════════════════════╗");
+        System.out.println("                           ║   LA BUENA FAMILIA   ║");
+        System.out.println("                           ╚══════════════════════╝");
+        System.out.println();
         inicializarDatos();
         menuPrincipal();
     }
     public static void inicializarDatos() {
+        //pollo
         pollo.add("Pollo entero fresco 2.05 kg");
         precioPollo.add(10.90);
         stockPollo.add(10);
@@ -91,6 +99,7 @@ public class SanFernando {
         pollo.add("Molleja de pollo");
         precioPollo.add(13.90);
         stockPollo.add(10);
+        // pavita
         pavita.add("Pechuga Especial de Pavita");
         precioPavita.add(113.00);
         stockPavita.add(10);
@@ -121,6 +130,7 @@ public class SanFernando {
         pavita.add("Guiso de pechuga de pavita");
         precioPavita.add(14.40);
         stockPavita.add(10);
+        // cerdo
         cerdo.add("Panceta de cerdo con piel y hueso");
         precioCerdo.add(38.10);
         stockCerdo.add(10);
@@ -151,12 +161,14 @@ public class SanFernando {
         cerdo.add("Tocino de Cerdo");
         precioCerdo.add(18.90);
         stockCerdo.add(10);
+        // huevos
         huevos.add("Huevos de gallina x15 und");
         precioHuevos.add(9.20);
         stockHuevos.add(10);
         huevos.add("Huevos de gallina x30 und");
         precioHuevos.add(18.30);
         stockHuevos.add(10);
+        // congelados
         congelados.add("Nuggets de pavita x2kg");
         precioCongelados.add(78.00);
         stockCongelados.add(10);
@@ -187,6 +199,7 @@ public class SanFernando {
         congelados.add("Hamburguesa de pavita");
         precioCongelados.add(17.40);
         stockCongelados.add(10);
+        // embutidos
         embutidos.add("Chorizo Parrillero x400g");
         precioEmbutidos.add(15.50);
         stockEmbutidos.add(10);
@@ -211,6 +224,7 @@ public class SanFernando {
         embutidos.add("Tripack salchicha huachana");
         precioEmbutidos.add(13.10);
         stockEmbutidos.add(10);
+        //celebridades
         celebridades.add("Pierna de Cerdo Congelado");
         precioCelebridades.add(24.00);
         stockCelebridades.add(10);
@@ -241,6 +255,7 @@ public class SanFernando {
         celebridades.add("Nuggets de pollo crocante");
         precioCelebridades.add(19.80);
         stockCelebridades.add(10);
+        // complementos
         complementos.add("Arroz grande costeno 5kg");
         precioComplementos.add(23.50);
         stockComplementos.add(10);
@@ -300,10 +315,20 @@ public class SanFernando {
                     crearCuenta();
                     break;
                 case 3:
-                    tiendaSanFernando();
+                    if (sesionIniciada == true) {
+                        tiendaSanFernando();
+                    }
+                    else {
+                        System.out.println("Debe iniciar sesion para acceder a la tienda");
+                    }
                     break;
                 case 4:
-                    menuAdminCRUD();
+                    if (esAdmin == true) {
+                        menuAdminCRUD();
+                    }
+                    else {
+                        System.out.println("Udeted no es Adminitrador");
+                    }
                     break;
                 default:
                     System.out.println("Opcion no valida");
@@ -311,7 +336,6 @@ public class SanFernando {
             }
         }
     }
-
     public static void iniciarSesion() {
         System.out.println("Ingrese su correo:");
         String correoIngresado = leer.nextLine();
@@ -336,12 +360,12 @@ public class SanFernando {
             System.out.println("Correo o contraseña incorrectos");
         }
     }
-
     public static void crearCuenta() {
         System.out.println("-----CREAR CUENTA------");
         if (cuentaCreada) {
             System.out.println("Ya existe una cuenta. Inicie sesion.");
-        } else {
+        }
+        else {
             boolean registroExitoso = false;
             do {
                 System.out.println("Ingrese su correo:");
@@ -373,7 +397,6 @@ public class SanFernando {
             } while (!registroExitoso);
         }
     }
-
     public static void tiendaSanFernando() {
         for (int i = 0; i < pollo.size(); i++) {
             carritoPollo.add(0);
@@ -417,143 +440,32 @@ public class SanFernando {
             opcionTienda = leer.nextInt();
             switch (opcionTienda) {
                 case 1:
-                    System.out.println("--- POLLO ---");
-                    imprimirProductos(pollo, precioPollo, stockPollo);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posPollo = leer.nextInt();
-                    if (posPollo >= 0 && posPollo < pollo.size()) {
-                        System.out.println("Cuantos " + pollo.get(posPollo) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockPollo.get(posPollo)) {
-                            carritoPollo.set(posPollo, carritoPollo.get(posPollo) + cant);
-                            stockPollo.set(posPollo, stockPollo.get(posPollo) - cant);
-                            System.out.println(cant + " " + pollo.get(posPollo) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockPollo.get(posPollo));
-                        }
-                    }
+                    productosPollo();
                     break;
                 case 2:
-                    System.out.println("--- PAVITA ---");
-                    imprimirProductos(pavita, precioPavita, stockPavita);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posPavita = leer.nextInt();
-                    if (posPavita >= 0 && posPavita < pavita.size()) {
-                        System.out.println("Cuantos " + pavita.get(posPavita) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockPavita.get(posPavita)) {
-                            carritoPavita.set(posPavita, carritoPavita.get(posPavita) + cant);
-                            stockPavita.set(posPavita, stockPavita.get(posPavita) - cant);
-                            System.out.println(cant + " " + pavita.get(posPavita) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockPavita.get(posPavita));
-                        }
-                    }
+                    productosPavita();
                     break;
                 case 3:
-                    System.out.println("--- CERDO ---");
-                    imprimirProductos(cerdo, precioCerdo, stockCerdo);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posCerdo = leer.nextInt();
-                    if (posCerdo >= 0 && posCerdo < cerdo.size()) {
-                        System.out.println("Cuantos " + cerdo.get(posCerdo) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockCerdo.get(posCerdo)) {
-                            carritoCerdo.set(posCerdo, carritoCerdo.get(posCerdo) + cant);
-                            stockCerdo.set(posCerdo, stockCerdo.get(posCerdo) - cant);
-                            System.out.println(cant + " " + cerdo.get(posCerdo) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockCerdo.get(posCerdo));
-                        }
-                    }
+                    productosCerdo();
                     break;
                 case 4:
-                    System.out.println("--- HUEVOS ---");
-                    imprimirProductos(huevos, precioHuevos, stockHuevos);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posHuevos = leer.nextInt();
-                    if (posHuevos >= 0 && posHuevos < huevos.size()) {
-                        System.out.println("Cuantos " + huevos.get(posHuevos) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockHuevos.get(posHuevos)) {
-                            carritoHuevos.set(posHuevos, carritoHuevos.get(posHuevos) + cant);
-                            stockHuevos.set(posHuevos, stockHuevos.get(posHuevos) - cant);
-                            System.out.println(cant + " " + huevos.get(posHuevos) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockHuevos.get(posHuevos));
-                        }
-                    }
+                    productosHuevo();
                     break;
                 case 5:
-                    System.out.println("--- CONGELADOS ---");
-                    imprimirProductos(congelados, precioCongelados, stockCongelados);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posCongelados = leer.nextInt();
-                    if (posCongelados >= 0 && posCongelados < congelados.size()) {
-                        System.out.println("Cuantos " + congelados.get(posCongelados) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockCongelados.get(posCongelados)) {
-                            carritoCongelados.set(posCongelados, carritoCongelados.get(posCongelados) + cant);
-                            stockCongelados.set(posCongelados, stockCongelados.get(posCongelados) - cant);
-                            System.out.println(cant + " " + congelados.get(posCongelados) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockCongelados.get(posCongelados));
-                        }
-                    }
+                   productosCongelados();
                     break;
                 case 6:
-                    System.out.println("--- EMBUTIDOS ---");
-                    imprimirProductos(embutidos, precioEmbutidos, stockEmbutidos);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posEmbutidos = leer.nextInt();
-                    if (posEmbutidos >= 0 && posEmbutidos < embutidos.size()) {
-                        System.out.println("Cuantos " + embutidos.get(posEmbutidos) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockEmbutidos.get(posEmbutidos)) {
-                            carritoEmbutidos.set(posEmbutidos, carritoEmbutidos.get(posEmbutidos) + cant);
-                            stockEmbutidos.set(posEmbutidos, stockEmbutidos.get(posEmbutidos) - cant);
-                            System.out.println(cant + " " + embutidos.get(posEmbutidos) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockEmbutidos.get(posEmbutidos));
-                        }
-                    }
+                    productosEmbutidos();
                     break;
                 case 7:
-                    System.out.println("--- CELEBRIDADES ---");
-                    imprimirProductos(celebridades, precioCelebridades, stockCelebridades);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posCelebridades = leer.nextInt();
-                    if (posCelebridades >= 0 && posCelebridades < celebridades.size()) {
-                        System.out.println("Cuantos " + celebridades.get(posCelebridades) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockCelebridades.get(posCelebridades)) {
-                            carritoCelebridades.set(posCelebridades, carritoCelebridades.get(posCelebridades) + cant);
-                            stockCelebridades.set(posCelebridades, stockCelebridades.get(posCelebridades) - cant);
-                            System.out.println(cant + " " + celebridades.get(posCelebridades) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockCelebridades.get(posCelebridades));
-                        }
-                    }
+                    productosCelebridades();
                     break;
                 case 8:
-                    System.out.println("--- COMPLEMENTOS ---");
-                    imprimirProductos(complementos, precioComplementos, stockComplementos);
-                    System.out.println("Seleccione un producto (-1 para cancelar):");
-                    int posComplementos = leer.nextInt();
-                    if (posComplementos >= 0 && posComplementos < complementos.size()) {
-                        System.out.println("Cuantos " + complementos.get(posComplementos) + " desea agregar al carrito:");
-                        int cant = leer.nextInt();
-                        if (cant <= stockComplementos.get(posComplementos)) {
-                            carritoComplementos.set(posComplementos, carritoComplementos.get(posComplementos) + cant);
-                            stockComplementos.set(posComplementos, stockComplementos.get(posComplementos) - cant);
-                            System.out.println(cant + " " + complementos.get(posComplementos) + " agregado al carrito");
-                        } else {
-                            System.out.println("Stock insuficiente. Solo hay: " + stockComplementos.get(posComplementos));
-                        }
-                    }
+                    productosComplementos();
                     break;
                 case 9:
                     mostrarCarritoYPagar();
+                    opcionTienda = 10;
                     break;
                 case 10:
                     System.out.println("Regresando al menu principal...");
@@ -564,7 +476,149 @@ public class SanFernando {
             }
         }
     }
-
+    public static void productosPollo() {
+        System.out.println("--- POLLO ---");
+        imprimirProductos(pollo, precioPollo, stockPollo);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posPollo = leer.nextInt();
+        if (posPollo >= 0 && posPollo < pollo.size()) {
+            System.out.println("Cuantos " + pollo.get(posPollo) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockPollo.get(posPollo)) {
+                carritoPollo.set(posPollo, carritoPollo.get(posPollo) + cant);
+                stockPollo.set(posPollo, stockPollo.get(posPollo) - cant);
+                System.out.println(cant + " " + pollo.get(posPollo) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockPollo.get(posPollo));
+            }
+        }
+    }
+    public static void productosPavita() {
+        System.out.println("--- PAVITA ---");
+        imprimirProductos(pavita, precioPavita, stockPavita);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posPavita = leer.nextInt();
+        if (posPavita >= 0 && posPavita < pavita.size()) {
+            System.out.println("Cuantos " + pavita.get(posPavita) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockPavita.get(posPavita)) {
+                carritoPavita.set(posPavita, carritoPavita.get(posPavita) + cant);
+                stockPavita.set(posPavita, stockPavita.get(posPavita) - cant);
+                System.out.println(cant + " " + pavita.get(posPavita) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockPavita.get(posPavita));
+            }
+        }
+    }
+    public static void productosCerdo() {
+        System.out.println("--- CERDO ---");
+        imprimirProductos(cerdo, precioCerdo, stockCerdo);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posCerdo = leer.nextInt();
+        if (posCerdo >= 0 && posCerdo < cerdo.size()) {
+            System.out.println("Cuantos " + cerdo.get(posCerdo) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockCerdo.get(posCerdo)) {
+                carritoCerdo.set(posCerdo, carritoCerdo.get(posCerdo) + cant);
+                stockCerdo.set(posCerdo, stockCerdo.get(posCerdo) - cant);
+                System.out.println(cant + " " + cerdo.get(posCerdo) + " agregado al carrito");
+            } else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockCerdo.get(posCerdo));
+            }
+        }
+    }
+    public static void productosHuevo() {
+        System.out.println("--- HUEVOS ---");
+        imprimirProductos(huevos, precioHuevos, stockHuevos);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posHuevos = leer.nextInt();
+        if (posHuevos >= 0 && posHuevos < huevos.size()) {
+            System.out.println("Cuantos " + huevos.get(posHuevos) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockHuevos.get(posHuevos)) {
+                carritoHuevos.set(posHuevos, carritoHuevos.get(posHuevos) + cant);
+                stockHuevos.set(posHuevos, stockHuevos.get(posHuevos) - cant);
+                System.out.println(cant + " " + huevos.get(posHuevos) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockHuevos.get(posHuevos));
+            }
+        }
+    }
+    public static void productosCongelados() {
+        System.out.println("--- CONGELADOS ---");
+        imprimirProductos(congelados, precioCongelados, stockCongelados);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posCongelados = leer.nextInt();
+        if (posCongelados >= 0 && posCongelados < congelados.size()) {
+            System.out.println("Cuantos " + congelados.get(posCongelados) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockCongelados.get(posCongelados)) {
+                carritoCongelados.set(posCongelados, carritoCongelados.get(posCongelados) + cant);
+                stockCongelados.set(posCongelados, stockCongelados.get(posCongelados) - cant);
+                System.out.println(cant + " " + congelados.get(posCongelados) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockCongelados.get(posCongelados));
+            }
+        }
+    }
+    public static void productosEmbutidos() {
+        System.out.println("--- EMBUTIDOS ---");
+        imprimirProductos(embutidos, precioEmbutidos, stockEmbutidos);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posEmbutidos = leer.nextInt();
+        if (posEmbutidos >= 0 && posEmbutidos < embutidos.size()) {
+            System.out.println("Cuantos " + embutidos.get(posEmbutidos) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockEmbutidos.get(posEmbutidos)) {
+                carritoEmbutidos.set(posEmbutidos, carritoEmbutidos.get(posEmbutidos) + cant);
+                stockEmbutidos.set(posEmbutidos, stockEmbutidos.get(posEmbutidos) - cant);
+                System.out.println(cant + " " + embutidos.get(posEmbutidos) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockEmbutidos.get(posEmbutidos));
+            }
+        }
+    }
+    public static void productosCelebridades() {
+        System.out.println("--- CELEBRIDADES ---");
+        imprimirProductos(celebridades, precioCelebridades, stockCelebridades);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posCelebridades = leer.nextInt();
+        if (posCelebridades >= 0 && posCelebridades < celebridades.size()) {
+            System.out.println("Cuantos " + celebridades.get(posCelebridades) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockCelebridades.get(posCelebridades)) {
+                carritoCelebridades.set(posCelebridades, carritoCelebridades.get(posCelebridades) + cant);
+                stockCelebridades.set(posCelebridades, stockCelebridades.get(posCelebridades) - cant);
+                System.out.println(cant + " " + celebridades.get(posCelebridades) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockCelebridades.get(posCelebridades));
+            }
+        }
+    }
+    public static void productosComplementos() {
+        System.out.println("--- COMPLEMENTOS ---");
+        imprimirProductos(complementos, precioComplementos, stockComplementos);
+        System.out.println("Seleccione un producto (-1 para cancelar):");
+        int posComplementos = leer.nextInt();
+        if (posComplementos >= 0 && posComplementos < complementos.size()) {
+            System.out.println("Cuantos " + complementos.get(posComplementos) + " desea agregar al carrito:");
+            int cant = leer.nextInt();
+            if (cant <= stockComplementos.get(posComplementos)) {
+                carritoComplementos.set(posComplementos, carritoComplementos.get(posComplementos) + cant);
+                stockComplementos.set(posComplementos, stockComplementos.get(posComplementos) - cant);
+                System.out.println(cant + " " + complementos.get(posComplementos) + " agregado al carrito");
+            }
+            else {
+                System.out.println("Stock insuficiente. Solo hay: " + stockComplementos.get(posComplementos));
+            }
+        }
+    }
     public static void mostrarCarritoYPagar() {
         System.out.println("================================");
         System.out.println("        SAN FERNANDO          ");
@@ -673,7 +727,7 @@ public class SanFernando {
             System.out.println("Tu carrito esta vacio");
             return;
         }
-        double subtotal = total / 1.18;
+        double subtotal = total/1.18;
         double igv = total - subtotal;
         System.out.println("================================");
         System.out.println("Subtotal: S/ " + subtotal);
@@ -683,16 +737,25 @@ public class SanFernando {
         System.out.println("1.- Efectivo");
         System.out.println("2.- Tarjeta");
         System.out.println("Seleccione metodo de pago:");
-        int metodoPago = leer.nextInt();
+        int metodo = leer.nextInt();
         leer.nextLine();
         double montoEntregado = total;
-        if (metodoPago == 1) {
-            montoEntregado = pagoEfectivo(total);
-        } else if (metodoPago == 2) {
-            pagoTarjeta(total);
+        String metodoPago;
+        switch (metodo) {
+            case 1:
+                montoEntregado = pagoEfectivo(total);
+                metodoPago = "Efectivo";
+                break;
+            case 2:
+                pagoTarjeta(total);
+                metodoPago = "Tarjeta";
+                break;
+            default:
+                System.out.println("Opcion no valida");
+                return;
         }
         String sucursal = elegirSucursal();
-        generarBoleta(total, subtotal, igv, montoEntregado, metodoPago == 1 ? "Efectivo" : "Tarjeta", sucursal);
+        generarBoleta(total, subtotal, igv, montoEntregado, metodoPago, sucursal);
         for (int i = 0; i < carritoPollo.size(); i++) {
             carritoPollo.set(i, 0);
         }
@@ -813,15 +876,17 @@ public class SanFernando {
         System.out.println("IGV (18%)      : S/ " + igv);
         System.out.println("TOTAL          : S/ " + total);
         System.out.println("Monto Entregado: S/ " + montoEntregado);
-        System.out.println("Vuelto         : S/ " + vuelto);
+        System.out.println("Cambio        : S/ " + vuelto);
         System.out.println("================================");
         System.out.println("  Gracias por comprar en");
         System.out.println("      SAN FERNANDO");
+        System.out.println("    LA BUENA FAMILIA"     );
         System.out.println("================================");
     }
     public static void menuAdminCRUD() {
         int opcionCRUD = 0;
         while (opcionCRUD != 5) {
+            System.out.println("---BIENVENIDO ADMINISTRADOR SELECCIONE UNA OPCION");
             System.out.println("1.- REGISTRAR PRODUCTO EN EL CATALOGO");
             System.out.println("2.- ACTUALIZAR PRODUCTO EN EL CATALOGO");
             System.out.println("3.- ELIMINAR PRODUCTO EN EL CATALOGO");
